@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TestProject.API.Data;
+
 namespace TestProject.API
 {
     public class Program
@@ -5,6 +8,8 @@ namespace TestProject.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<TestProjectDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
 
             // Add services to the container.
 
